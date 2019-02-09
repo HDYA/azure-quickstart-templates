@@ -13,6 +13,9 @@
         },
         "systemMetricsProvider": {
             "value": "None"
+        },
+        "_artifactsLocation" : {
+            "value": "https://raw.githubusercontent.com/HDYA/azure-quickstart-templates/oms-cloudfoundry-alert-workaround/oms-cloudfoundry-solution"
         }
     }
 }

@@ -1747,37 +1747,6 @@
                 "queryTimeSpan": "[variables('alerts')[copyIndex()].alert.schedule.timeSpan]",
                 "enabled": "[variables('alerts')[copyIndex()].alert.enabled]"
             }
-        },
-        {
-            "name": "[concat(parameters('omsWorkspaceName'), '/', toLower(variables('alerts')[copyIndex()].search.category), '|', toLower(variables('alerts')[copyIndex()].search.name), '/', 'schedule-', uniqueString(resourceGroup().id, deployment().name, parameters('omsWorkspaceName'), '/', variables('alerts')[copyIndex()].search.category, '|', variables('alerts')[copyIndex()].search.name), '/', 'alert-', uniqueString(resourceGroup().id, deployment().name, parameters('omsWorkspaceName'), '/', variables('alerts')[copyIndex()].search.category, '|', variables('alerts')[copyIndex()].search.name))]",
-            "type": "Microsoft.OperationalInsights/workspaces/savedSearches/schedules/actions",
-            "apiVersion": "2017-03-15-preview",
-            "copy": {
-                "name": "cf.alert.alerts",
-                "mode": "Parallel",
-                "count": "[length(variables('alerts'))]"
-            },
-            "dependsOn": [
-                "[concat('Microsoft.OperationalInsights/workspaces/', parameters('omsWorkspaceName'), '/savedSearches/', toLower(variables('alerts')[copyIndex()].search.category), '|', toLower(variables('alerts')[copyIndex()].search.name))]",
-                "[concat('Microsoft.OperationalInsights/workspaces/', parameters('omsWorkspaceName'), '/savedSearches/', toLower(variables('alerts')[copyIndex()].search.category), '|', toLower(variables('alerts')[copyIndex()].search.name), '/schedules/','schedule-',uniqueString(resourceGroup().id, deployment().name,parameters('omsWorkspaceName'), '/', variables('alerts')[copyIndex()].search.category, '|', variables('alerts')[copyIndex()].search.name))]"
-            ],
-            "tags": {
-                "Source": "QuickstartTemplates"
-            },
-            "properties": {
-                "etag": "*",
-                "Type": "Alert",
-                "name": "[variables('alerts')[copyIndex()].alert.displayName]",
-                "Description": "[variables('alerts')[copyIndex()].alert.description]",
-                "Severity": "[toLower(variables('alerts')[copyIndex()].alert.severity)]",
-                "Threshold": {
-                    "Operator": "[variables('alerts')[copyIndex()].alert.thresholdOperator]",
-                    "Value": "[variables('alerts')[copyIndex()].alert.thresholdValue]"
-                },
-                "Throttling": {
-                    "DurationInMinutes": "[variables('alerts')[copyIndex()].alert.throttleMinutes]"
-                }
-            }
-        }        
+        }
     ]
 }
